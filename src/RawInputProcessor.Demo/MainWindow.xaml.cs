@@ -44,6 +44,21 @@ namespace RawInputProcessor.Demo
             Event = e;
             DeviceCount = _rawInput.NumberOfKeyboards;
             e.Handled = (ShouldHandle.IsChecked == true);
+
+            if(e.Device.Name == @"\\?\ACPI#HPQ8002#4&35d0e288&0#{884b96c3-56ef-11d1-bc8c-00a0c91405dd}")
+            {
+                System.Media.SoundPlayer player = new System.Media.SoundPlayer();
+              
+                switch(e.VirtualKey)
+                {
+                    case 'Q':
+                        player.SoundLocation = @"C:\Soundboard\Audio\q.wav";
+                        break;
+                }
+
+                player.Play();
+
+            }
         }
 
         protected override void OnSourceInitialized(EventArgs e)
@@ -54,7 +69,7 @@ namespace RawInputProcessor.Demo
 
         private void StartWndProcHandler()
         {
-            _rawInput = new RawPresentationInput(this, RawInputCaptureMode.Foreground);
+            _rawInput = new RawPresentationInput(this, RawInputCaptureMode.ForegroundAndBackground);
             _rawInput.KeyPressed += OnKeyPressed;
             DeviceCount = _rawInput.NumberOfKeyboards;
         }
