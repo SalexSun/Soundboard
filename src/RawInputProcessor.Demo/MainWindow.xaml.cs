@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
+using System.IO;
 
 namespace RawInputProcessor.Demo
 {
@@ -46,18 +47,25 @@ namespace RawInputProcessor.Demo
             DeviceCount = _rawInput.NumberOfKeyboards;
             e.Handled = (ShouldHandle.IsChecked == true);
 
-            if(e.Device.Name == @"\\?\ACPI#HPQ8002#4&35d0e288&0#{884b96c3-56ef-11d1-bc8c-00a0c91405dd}")
+            if (e.Device.Name == @"\\?\ACPI#HPQ8002#4&35d0e288&0#{884b96c3-56ef-11d1-bc8c-00a0c91405dd}")
             {
                 System.Media.SoundPlayer player = new System.Media.SoundPlayer();
-              
-                switch(e.Key)
+
+                switch (e.Key)
                 {
                     case Key.Q:
                         player.SoundLocation = @"C:\Soundboard\Audio\q.wav";
                         break;
+
+                    case Key.W:
+                        player.SoundLocation = @"C:\Soundboard\Audio\w.wav";
+                        break;
                 }
 
-                player.Play();
+                if (File.Exists(player.SoundLocation))
+                { 
+                    player.Play();
+                }
 
             }
         }
