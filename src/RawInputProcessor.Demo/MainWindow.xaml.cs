@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows.Input;
 
 namespace RawInputProcessor.Demo
 {
@@ -49,9 +50,9 @@ namespace RawInputProcessor.Demo
             {
                 System.Media.SoundPlayer player = new System.Media.SoundPlayer();
               
-                switch(e.VirtualKey)
+                switch(e.Key)
                 {
-                    case 'Q':
+                    case Key.Q:
                         player.SoundLocation = @"C:\Soundboard\Audio\q.wav";
                         break;
                 }
