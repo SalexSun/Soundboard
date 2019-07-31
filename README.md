@@ -1,7 +1,7 @@
-RawInputProcessor
+Soundboard
 =================
 
-Provides a way to distinguish input from multiple keyboards in WPF and Windows Forms.
+Provides a way to use a secondary keyboard on windows PC as soundboard device
 
-Forked from this CodeProject article:
-http://www.codeproject.com/Articles/17123/Using-Raw-Input-from-C-to-handle-multiple-keyboard
+Forked from this project
+https://github.com/aelij/RawInputProcessor
