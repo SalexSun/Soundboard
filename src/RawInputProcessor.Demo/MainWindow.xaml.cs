@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using System.IO;
+using System.Configuration;
 
 namespace RawInputProcessor.Demo
 {
@@ -14,6 +15,7 @@ namespace RawInputProcessor.Demo
         private RawPresentationInput _rawInput;
         private int _deviceCount;
         private RawInputEventArgs _event;
+        private string KeyBoardHidId;
 
         public MainWindow()
         {
@@ -41,26 +43,29 @@ namespace RawInputProcessor.Demo
             }
         }
 
+        private void ReadFromAppConfig()
+        {
+            this.KeyBoardHidId = ConfigurationManager.AppSettings["mykeyboardid"];
+        }
+
         private void OnKeyPressed(object sender, RawInputEventArgs e)
         {
             Event = e;
             DeviceCount = _rawInput.NumberOfKeyboards;
             e.Handled = (ShouldHandle.IsChecked == true);
 
-            if (e.Device.Name == @"\\?\ACPI#HPQ8002#4&35d0e288&0#{884b96c3-56ef-11d1-bc8c-00a0c91405dd}")
+            ReadFromAppConfig();
+
+            if (e.Device.Name == this.KeyBoardHidId)
             {
                 System.Media.SoundPlayer player = new System.Media.SoundPlayer();
+  
+                string folderpath = ConfigurationManager.AppSettings["wavfileslocation"];
 
-                switch (e.Key)
-                {
-                    case Key.Q:
-                        player.SoundLocation = @"C:\Soundboard\Audio\q.wav";
-                        break;
+                // for correct file naming of .wav files, refer to the Key enum
+                string filepath = string.Format("{0}{1:c}{2}", folderpath, e.Key.ToString(), ".wav");
 
-                    case Key.W:
-                        player.SoundLocation = @"C:\Soundboard\Audio\w.wav";
-                        break;
-                }
+                player.SoundLocation = @filepath;
 
                 if (File.Exists(player.SoundLocation))
                 { 
