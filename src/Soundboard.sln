@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RawInputProcessor", "RawInputProcessor\RawInputProcessor.csproj", "{6480E255-35A3-4D61-B48C-F6EFBCAEF891}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoundboardApp", "RawInputProcessor.Demo\SoundboardApp.csproj", "{6D678BEC-3454-4ADF-89D9-AAD1ED05C71A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoundboardApp", "SoundboardApp\SoundboardApp.csproj", "{6D678BEC-3454-4ADF-89D9-AAD1ED05C71A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
